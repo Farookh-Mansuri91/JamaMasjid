@@ -1,0 +1,112 @@
+/* Base header styles */
+.site-header {
+  background: #1da3e2;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+  padding: 20px 0;
+}
+
+.contact-info i {
+  color: #007bff;
+}
+
+.contact-info a {
+  color: #007bff;
+}
+
+.masjid-title h1 {
+  color: #333;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.navbar-custom {
+  background-color: #f8f9fa;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.navbar-custom .navbar-nav .nav-link {
+  border-radius: 20px;
+  color: #333;
+  font-weight: 500;
+  padding: 10px 20px;
+  text-transform: capitalize;
+  transition: all 0.3s ease; /* Smooth transition for hover and active states */
+}
+
+/* Change the background color of the menu item when hovered */
+.navbar-custom .navbar-nav .nav-link:hover {
+  background-color: #5bc1ac;
+  color: #fff;
+}
+
+/* Active menu item - selected item look */
+.navbar-custom .navbar-nav .nav-link.active {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold; /* Optional: highlight selected item more */
+}
+
+/* Ensure there is no layout shift for active state */
+.navbar-custom .navbar-nav .nav-link.active,
+.navbar-custom .navbar-nav .nav-link {
+  padding: 10px 20px; /* Same padding for both active and normal state */
+}
+
+/* Styling for login/logout buttons */
+.btn-login, .btn-logout {
+  background-color: #007bff;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: 500;
+  margin-left: 10px;
+  padding: 8px 15px;
+  text-transform: capitalize;
+}
+
+.btn-login:hover, .btn-logout:hover {
+  background-color: #0056b3;
+}
+
+.user-info {
+  color: #333;
+  font-size: 16px;
+}
+
+/* Responsive Design */
+@media (width <= 992px) {
+  .navbar-custom .navbar-nav .nav-link {
+    padding: 8px 15px;
+  }
+
+  .navbar-custom .logo span {
+    font-size: 20px;
+  }
+}
+
+@media (width <= 576px) {
+  .site-header {
+    padding: 15px 0;
+  }
+
+  .navbar-custom .navbar-nav .nav-link {
+    padding: 8px 10px;
+  }
+}
+
+.contact-info p,
+.contact-info a {
+  color: white; /* Set text color to white */
+}
+
+.contact-info i {
+  color: black; /* Set icon color to black */
+}
+
+/* Align Navbar Toggler (Hamburger Menu) to the Right */
+.navbar-toggler-custom {
+  border: none; /* Optional: Remove border for a cleaner look */
+  box-shadow: none;
+  margin-left: auto !important; /* Push it to the right */
+  outline: none;
+}

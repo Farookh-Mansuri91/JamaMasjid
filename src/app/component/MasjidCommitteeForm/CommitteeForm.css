@@ -1,0 +1,49 @@
+/* Custom styles */
+.card {
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    font-size: 0.9rem;
+  }
+  
+  .card-img-top {
+    border-radius: 15px 15px 0 0;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  button {
+    border-radius: 25px;
+    width: 100%;
+  }
+  
+  /* Loader container style */
+.loader-container {
+  align-items: center;
+  background: rgb(0 0 0 / 40%); /* Dark overlay */
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  transition: opacity 0.3s ease;
+  width: 100%;
+  z-index: 9999;
+}
+
+/* Spinner styles */
+.spinner-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}

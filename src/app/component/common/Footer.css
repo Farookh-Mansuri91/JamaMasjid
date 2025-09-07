@@ -1,0 +1,50 @@
+/* Footer Styling */
+.site-footer {
+    background-color: #222;
+    color: white;
+  }
+  
+  .site-footer .footer-title {
+    color: #5bc1ac;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .site-footer ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .site-footer ul li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .site-footer .social-icon-item {
+    margin-right: 10px;
+  }
+  
+  .site-footer .social-icon-link {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+  }
+  
+  .site-footer .social-icon-link:hover {
+    color: #28a745;  /* Green color on hover */
+  }
+  
+  @media (width <= 767px) {
+    .site-footer {
+      padding: 20px 10px;
+    }
+  
+    .site-footer .footer-title {
+      font-size: 1.1rem;
+    }
+  
+    .site-footer .social-icon-item {
+      margin-right: 15px;
+    }
+  }
+  

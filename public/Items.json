@@ -1,0 +1,32 @@
+ {
+          "bootstrap": [
+            {
+              "id": 1,
+              "name":"first Image",
+              "title": "be a Kind Heart",
+              "body": "Professional charity theme based on Bootstrap 5.2.2",
+              "imageUrl": "/assets/images/slide/volunteer-helping-with-donation-box.jpg",
+              "docs": "https://getbootstrap.com/docs/4.0/components/carousel/"
+            },
+            {
+              "id": 2,
+              "name":"second Image",
+               "title": "Non-profit",
+               "body": "You can support us to grow more",
+               "imageUrl": "/assets/images/slide/volunteer-selecting-organizing-clothes-donations-charity.jpg",
+               "docs": "https://getbootstrap.com/docs/4.0/components/carousel/"
+            },
+            {
+              "id": 3,
+              "name": "Third Image",
+              "title": "Humanity",
+              "body": "Please tell your friends about our website",
+              "imageUrl": "/assets/images/slide/medium-shot-people-collecting-donations.jpg",
+              "docs": "https://getbootstrap.com/docs/4.0/components/carousel/"
+            }
+          ]
+       
+      }
+     
+
+      

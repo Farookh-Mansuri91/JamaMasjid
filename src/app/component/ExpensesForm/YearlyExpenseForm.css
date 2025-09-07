@@ -1,0 +1,130 @@
+/* General Table Styling */
+.table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.table td {
+  background-color: #f9f9f9;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.pagination .page-item:hover .page-link {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.hover-bg-blue:hover {
+  background-color: #007bff !important;
+  color: white;
+}
+
+/* Dropdown Styling */
+.dropdown-toggle {
+  background-color: #007bff; /* Blue background */
+  border-radius: 10px;       /* Rounded corners */
+  color: white;              /* White text */
+  padding: 10px 20px;        /* Custom padding */
+}
+
+.dropdown-toggle:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.dropdown-item {
+  color: #333;
+}
+
+.w-100 {
+  width: 60% !important; /* Custom width for the dropdown */
+}
+
+.dropdown-item:hover {
+  background-color: #e0e0e0; /* Light gray on hover */
+}
+
+/* Custom Table Design */
+.table-modern {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+  overflow: hidden;
+}
+
+.table-modern thead th {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.table-modern tbody tr:hover {
+  background-color: rgb(0 123 255 / 10%);
+}
+
+/* Media Queries for Responsive Design */
+@media (width <= 1200px) {
+  .w-100 {
+    width: 80% !important; /* Increase dropdown width for medium screens */
+  }
+  
+  /* For medium screens, adjust the table's font size */
+  .table-modern th, .table-modern td {
+    font-size: 14px;
+  }
+}
+
+@media (width <= 768px) {
+  /* For small screens, make the table more compact */
+  .table-modern th, .table-modern td {
+    font-size: 12px;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  /* Dropdown becomes full-width on small screens */
+  .w-100 {
+    width: 100% !important;
+  }
+}
+
+@media (width <= 576px) {
+  /* For extra small screens (phones), adjust table layout and dropdown */
+  .table-modern th, .table-modern td {
+    font-size: 10px;
+  }
+
+  /* Adjust card body padding */
+  .card-body {
+    padding: 1rem;
+  }
+
+  /* Make the dropdown button larger and full-width */
+  .dropdown-toggle {
+    font-size: 16px;
+    width: 100% !important;
+  }
+}
+
+.dropdown-button {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+}
+
+.add-expense-button {
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.add-expense-button:hover {
+  background-color: #28a745;
+  color: #fff;
+}

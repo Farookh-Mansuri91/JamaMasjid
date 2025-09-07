@@ -1,0 +1,49 @@
+/* Custom Styles */
+.container {
+  margin: auto;
+  max-width: 800px;
+}
+
+/* Card Styling */
+.card-header {
+  background-color: #f8f9fa;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.card-body {
+  background-color: #f1f1f1;
+}
+
+.card-body .list-group-item {
+  background-color: #fff;
+  border: none;
+}
+
+.card-body .list-group-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.card-body .list-group-item a:hover {
+  text-decoration: underline;
+}
+
+/* Form Styling */
+.form-control {
+  border-radius: 0.375rem;
+  box-shadow: none;
+}
+
+.form-group label {
+  font-weight: 600;
+}
+
+button.w-100 {
+  font-size: 1rem;
+  padding: 10px;
+}
+
+button:hover {
+  opacity: 0.9;
+}

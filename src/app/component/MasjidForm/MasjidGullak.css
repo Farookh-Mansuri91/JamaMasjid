@@ -1,0 +1,116 @@
+/* Basic Table Styling */
+.table {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+    overflow-x: auto; /* To make the table horizontally scrollable on small screens */
+}
+
+.table th {
+    background-color: #007bff !important;
+    color: white;
+    font-weight: 600;
+}
+
+/* Ensure header color does not change on mobile devices */
+@media (width <= 768px) {
+    .table th {
+      background-color: #007bff; /* Retains the same color on smaller screens */
+    }
+  }
+
+/* Increase column width for all columns */
+.table th{
+    padding: 10px;
+    width: 50px; /* Default width for all columns */
+    overflow-wrap: break-word; /* Ensure text wraps instead of overflowing */
+}
+
+.amount-total{
+    color: green;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Custom styling for table-dark */
+.custom-table-dark {
+    background-color: #007bff;  /* Change the background to a darker shade */
+    color: white;  /* Set the text color to white */
+   
+  }
+  
+ /* Make the dropdown form responsive */
+.row .col-12 .select-container select.form-select {
+    max-width: 100% !important; /* Prevents it from being too wide */
+    width: 100% !important; /* Force full width in small screen sizes */
+  }
+
+  /* Optional: Ensure the dropdown takes full width on mobile and doesn't stretch too much on large screens */
+.select-container select {
+  width: 100%; /* Ensure it takes full width in the container */
+}
+
+/* For larger screens, you can optionally limit the width of the card */
+@media (width >= 768px) {
+  .select-container select {
+    max-width: 100%; /* Allow select to take full width on large screens */
+  }
+}
+
+  /* Loader container style */
+.loader-container {
+  align-items: center;
+  background: rgb(0 0 0 / 40%); /* Dark overlay */
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  transition: opacity 0.3s ease;
+  width: 100%;
+  z-index: 9999;
+}
+
+/* Spinner styles */
+.spinner-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+.table-dark-green {
+  background-color: darkgreen !important;
+  color: white; /* Optional: Change text color */
+}
+
+  /* Style for larger screens (default desktop behavior) */
+  @media (width >= 768px) {
+    .row .col-12 .select-container select.form-select {
+      max-width: 300px !important;  /* Limit max width to 300px for medium and large screens */
+    }
+  }
+  
+  /* Responsive adjustments for mobile screens */
+  @media (width <= 576px) {
+    .row .col-12 .select-container select.form-select {
+      font-size: 14px !important;  /* Reduce font size for better readability */
+      padding: 10px !important;    /* Adjust padding for better fit */
+    }
+  
+    .row .col-12 .select-container {
+      padding: 0 15px !important; /* Add padding for small screens */
+    }
+  }
+
+  .list-title {
+    color: #0d6efd !important; /* Blue color */
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  

@@ -1,0 +1,227 @@
+/* More specific selector to override Bootstrap's default styles */
+.table.custom-tablehead {
+    background-color: #0d6efd !important;
+    color: white !important;
+  }
+  
+  .table .custom-tablehead th {
+    background-color: #0d6efd !important;
+    color: white !important;
+  }
+
+  .table-modern {
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+    overflow: hidden;
+  }
+
+  .table-modern thead th {
+    background-color: #0d6efd !important;
+    color: white !important;
+  }
+  
+.highlight-cell {
+    background-color: #e7f3fe;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.highlight-button {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.highlight-cell:hover {
+    background-color: #d1ecf1; /* A slightly darker blue for hover */
+    cursor: pointer;
+}
+
+/* Add hover effect on dropdown items */
+.dropdown-item:hover {
+    background-color: #007bff;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
+  /* Add a custom border on the dropdown button */
+  .dropdown-toggle {
+    border-radius: 50px !important;
+    padding: 12px 20px !important;
+  }
+  
+  /* Custom font for dropdown items */
+  .dropdown-item {
+    font-size: 1rem;
+  }
+  
+  /* Mobile-specific styles */
+@media (width <= 576px) {
+    .dropdown-toggle {
+      font-size: 0.9rem; /* Adjust font size on smaller screens */
+      padding: 10px 15px !important; /* Smaller padding on mobile */
+    }
+  
+    .dropdown-item {
+      font-size: 1rem; /* Adjust font size for readability */
+    }
+  }
+  
+  /* Enhance dropdown item hover effect */
+  .dropdown-item:hover {
+    background-color: #007bff;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
+/* Input hover effect */
+.input-group-text:hover {
+    background-color: #e9ecef;
+    border-color: #007bff;
+  }
+  
+  .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgb(0 123 255 / 25%);
+  }
+  
+  /* Ensure good spacing on mobile devices */
+  @media (width <= 576px) {
+    .form-control {
+      font-size: 0.9rem; /* Adjust font size for better readability */
+    }
+  
+    .input-group-text {
+      padding: 8px; /* Adjust icon padding on small screens */
+    }
+  }
+
+  /* Hover effect */
+.btn-success:hover {
+    background-color: #218838; /* Darker green */
+    border-color: #1e7e34;
+    transition: all 0.3s ease;
+  }
+  
+  /* Focus effect */
+  .btn-success:focus {
+    box-shadow: 0 0 0 0.2rem rgb(40 167 69 / 50%);
+  }
+  
+  /* Small screen responsiveness: */
+  @media (width <= 576px) {
+    .btn-success {
+      font-size: 1.1rem; /* Increase font size for better readability on mobile */
+      padding: 12px 25px; /* Add more padding to make it more touch-friendly */
+    }
+  }
+
+  /* Hover effect for buttons */
+.btn-success:hover {
+    background-color: #218838; /* Darker green for hover */
+    border-color: #1e7e34;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #6c757d;
+    border-color: #5a6268;
+    transition: all 0.3s ease;
+  }
+  
+  /* Focus effect for buttons */
+  .btn:focus {
+    box-shadow: 0 0 0 0.2rem rgb(40 167 69 / 50%);
+  }
+
+  /* Hover effect for buttons */
+.btn-success:hover {
+    background-color: #218838; /* Darker green for hover */
+    border-color: #1e7e34;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #6c757d;
+    border-color: #5a6268;
+    transition: all 0.3s ease;
+  }
+  
+  /* Focus effect for buttons */
+  .btn:focus {
+    box-shadow: 0 0 0 0.2rem rgb(40 167 69 / 50%);
+  }
+
+/* Modern Heading Style */
+h2 {
+    color: #0d6efd; /* Bright color for the text */
+    font-family: Poppins, sans-serif; /* Modern, clean font */
+    font-size: 2.5rem; /* Larger text for better visibility */
+    font-weight: 600; /* Semi-bold font */
+    letter-spacing: 2px; /* Slight letter spacing for better readability */
+    margin-bottom: 2rem; /* Bottom margin for spacing */
+    text-align: center;
+    text-shadow: 2px 2px 5px rgb(0 0 0 / 10%); /* Subtle shadow effect for depth */
+    text-transform: uppercase; /* Uppercase letters for a modern look */
+  }
+  
+  /* Mobile Support */
+  @media (width <= 768px) {
+    h2 {
+      font-size: 1.8rem; /* Adjust font size for smaller screens */
+      letter-spacing: 1px; /* Reduce letter spacing on mobile */
+      margin-bottom: 1.5rem; /* Reduce margin for small screens */
+    }
+  }
+  
+  /* For Extra Small Devices (Mobile) */
+  @media (width <= 576px) {
+    h2 {
+      font-size: 1.5rem; /* Adjust font size even more for very small screens */
+      letter-spacing: 0.5px; /* Even tighter letter spacing */
+      margin-bottom: 1.2rem; /* Adjust bottom margin */
+    }
+  }
+  
+  /* Loader container style */
+.loader-container {
+  align-items: center;
+  background: rgb(0 0 0 / 40%); /* Dark overlay */
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  transition: opacity 0.3s ease;
+  width: 100%;
+  z-index: 9999;
+}
+
+/* Spinner styles */
+.spinner-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+  /* Style for larger screens (default desktop behavior) */
+  @media (width >= 768px) {
+    .row .col-12 .select-container select.form-select {
+      max-width: 300px !important;  /* Limit max width to 300px for medium and large screens */
+    }
+  }
+  
+  /* Responsive adjustments for mobile screens */
+  @media (width <= 576px) {
+    .row .col-12 .select-container select.form-select {
+      font-size: 14px !important;  /* Reduce font size for better readability */
+      padding: 10px !important;    /* Adjust padding for better fit */
+    }
+  
+    .row .col-12 .select-container {
+      padding: 0 15px !important; /* Add padding for small screens */
+    }
+  }

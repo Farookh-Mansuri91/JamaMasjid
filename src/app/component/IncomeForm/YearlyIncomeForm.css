@@ -1,0 +1,140 @@
+/* Table Header Styling */
+.table > thead {
+    background-color: #007bff; /* Set a background color */
+    color: white; /* Text color for better readability */
+    font-weight: bold; /* Bold font for header */
+  }
+  
+  .table > thead > tr > th {
+    background-color: #007bff; /* Set a custom color for the header */
+    border: 1px solid #ddd; /* Add border for a clean look */
+    color: white; /* Set the text color to white */
+    font-size: 1rem; /* Set font size */
+    max-width: 200px; /* Optional: Set a maximum width if required */
+    min-width: 120px; /* Ensure a minimum width for each column */
+    overflow: hidden; /* Prevent text overflow */
+    padding: 10px 12px; /* Consistent padding */
+    text-align: center; /* Center-align text */
+    text-overflow: ellipsis; /* Ellipsis for overflowing text */
+    white-space: nowrap; /* Ensure text stays on one line */
+  }
+  
+  /* Table Cells Styling */
+  .table th, .table td {
+    border: 1px solid #ddd; /* Border for a clean look */
+    overflow: hidden; /* Hide overflow */
+    padding: 8px 12px; /* Consistent padding */
+    text-align: center; /* Align text in the center */
+    text-overflow: ellipsis; /* Add ellipsis (...) when text overflows */
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+  
+  /* Table Body Row Styling */
+  .table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row color */
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Table Footer (Optional) */
+  .table-footer {
+    background-color: #f1f1f1;
+    font-weight: bold;
+  }
+  
+  /* Table Container Styling */
+  .table-container {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
+    margin: 20px auto;
+    max-width: 100%;
+    overflow-x: auto; /* Allow horizontal scrolling for smaller screens */
+  }
+  
+  /* Table Wrapper for Scrolling on Small Screens */
+  .table-wrapper {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow-x: auto;
+    padding: 10px;
+  }
+  
+  /* Pagination Styling */
+  .pagination {
+    justify-content: center;
+    margin-top: 15px;
+  }
+  
+  .pagination .page-item .page-link {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #007bff;
+    margin: 0 2px;
+    padding: 6px 12px;
+  }
+  
+  .pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+  }
+  
+  .pagination .page-item.disabled .page-link {
+    background-color: #f1f1f1;
+    color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Media Queries */
+  @media (width <= 768px) {
+    .table th, .table td {
+      font-size: 14px;
+      padding: 8px 10px;
+    }
+  
+    .table th {
+      font-size: 15px;
+      text-align: center;
+    }
+  
+    .table td {
+      text-align: center;
+    }
+  
+    .table-container {
+      padding: 10px;
+    }
+  
+    .table-wrapper {
+      border: none;
+    }
+  
+    .pagination .page-item .page-link {
+      font-size: 13px;
+      padding: 4px 8px;
+    }
+  }
+  
+  @media (width <= 576px) {
+    .table th, .table td {
+      font-size: 12px;
+      padding: 6px 8px;
+    }
+  
+    .table th {
+      text-align: center;
+    }
+  
+    .table td {
+      text-align: center;
+    }
+  
+    .pagination .page-item .page-link {
+      font-size: 12px;
+      padding: 3px 6px;
+    }
+  }
+  
