@@ -42,8 +42,6 @@ export const addMasjidGullakPaymentData  = async (addPayment) => {
 
     // Parse the successful response
     const data = await response.json();
-    console.log("API Response:", data);
-
     // Return the parsed response to the calling function
     return data;
 
@@ -54,7 +52,6 @@ export const addMasjidGullakPaymentData  = async (addPayment) => {
 };
 
 export const updateMasjidGullakData = async (paymentData) => {
-  console.log('API Request:', paymentData);
   const token = localStorage.getItem("token");
   if (!token) {
     throw new Error("No authentication token found");

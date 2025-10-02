@@ -151,7 +151,6 @@ const SadqaMember = () => {
       toast.error("Failed to save member data!");
     }
   };
-console.log('isauth',isUserAuthenticated);
   if (!isClient || isLoading) {
     return (
       <div className="loader-container">

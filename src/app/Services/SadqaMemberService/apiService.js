@@ -17,7 +17,6 @@ export const addSadqaMemberData = async (modalData) => {
   // if (!token) {
   //   throw new Error("No authentication token found");
   // }
-  console.log(modalData)
   const response = await fetch(`https://localhost:7140/api/SadqaMember/addSadqaMember`, {
     method: "POST",
     headers: {
@@ -48,7 +47,6 @@ export const updateSadqaMemberData = async (updatedMemeber) => {
   //   throw new Error("No authentication token found");
   // }
   // Update existing payment record
-  console.log(updatedMemeber);
   const response = await fetch(`https://localhost:7140/api/SadqaMember/updateSadqaMember`, {
     method: 'PUT',
     headers: {

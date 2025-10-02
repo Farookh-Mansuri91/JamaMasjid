@@ -1,7 +1,6 @@
 export const isAuthenticated = () => {
   if (typeof window !== "undefined") {
     const token = localStorage.getItem("token");
-    console.log('token',token);
     return !!token; // Check if token exists
   }
   return false; // Default to not authenticated in non-browser environments

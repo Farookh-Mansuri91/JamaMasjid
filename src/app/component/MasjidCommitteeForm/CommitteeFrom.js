@@ -54,10 +54,10 @@ const MasjidCommitteeForm = () => {
     return { years, months };
   };
 
-  // Safely choose current imam (last in history or null)
-  const currentImam = imamHistory.length > 0 ? imamHistory[imamHistory.length - 1] : null;
+  const currentImam =
+    imamHistory.length > 0 ? imamHistory[imamHistory.length - 1] : null;
 
-  if (!isClient || isLoading || !currentImam) {
+  if (!isClient || isLoading) {
     return (
       <div className="loader-container">
         <div className="spinner-container">
@@ -83,193 +83,209 @@ const MasjidCommitteeForm = () => {
       <h3 className="text-center mb-4" style={headingStyle}>
         Current Imam
       </h3>
-      <Row xs={1} md={2} lg={2} className="g-4">
-        <Col>
-          <Card className="shadow-lg border-0 rounded">
-            <Card.Img
-              variant="top"
-              src={currentImam?.imamImage || "/placeholder.jpg"}
-            />
-            <Card.Body>
-              <Card.Title>{currentImam?.imamName || "Unknown Imam"}</Card.Title>
-              <Card.Text className="text-muted">Imam</Card.Text>
-              <Card.Text>
-                <strong>Joined:</strong>{" "}
-                {currentImam?.joiningDate
-                  ? moment(currentImam.joiningDate).format("MMMM YYYY")
-                  : "N/A"}
-              </Card.Text>
-              <Card.Text>
-                <strong>Address:</strong> {currentImam?.address || "N/A"}
-              </Card.Text>
-              <Card.Text>
-                <strong>Last Serving Day:</strong>{" "}
-                {currentImam?.lastServingDay || "N/A"}
-              </Card.Text>
-              <Card.Text>
-                <strong>Total Service:</strong>{" "}
-                {calculateYearsAndMonths(
-                  currentImam?.yearJoined + "-01-01",
-                  currentImam?.lastServingDay
-                ).years}{" "}
-                years{" "}
-                {calculateYearsAndMonths(
-                  currentImam?.yearJoined + "-01-01",
-                  currentImam?.lastServingDay
-                ).months}{" "}
-                months
-              </Card.Text>
-              <Card.Text>
-                <strong>Salary:</strong> ${currentImam?.salary || "N/A"}
-              </Card.Text>
-              <Card.Text>
-                <strong>Contact:</strong> {currentImam?.contactNumber || "N/A"}
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
+      {currentImam ? (
+        <Row xs={1} md={2} lg={2} className="g-4">
+          <Col>
+            <Card className="shadow-lg border-0 rounded">
+              <Card.Img
+                variant="top"
+                src={currentImam?.imamImage || "/placeholder.jpg"}
+              />
+              <Card.Body>
+                <Card.Title>{currentImam?.imamName || "Unknown Imam"}</Card.Title>
+                <Card.Text className="text-muted">Imam</Card.Text>
+                <Card.Text>
+                  <strong>Joined:</strong>{" "}
+                  {currentImam?.joiningDate
+                    ? moment(currentImam.joiningDate).format("MMMM YYYY")
+                    : "N/A"}
+                </Card.Text>
+                <Card.Text>
+                  <strong>Address:</strong> {currentImam?.address || "N/A"}
+                </Card.Text>
+                <Card.Text>
+                  <strong>Last Serving Day:</strong>{" "}
+                  {currentImam?.lastServingDay || "N/A"}
+                </Card.Text>
+                <Card.Text>
+                  <strong>Total Service:</strong>{" "}
+                  {calculateYearsAndMonths(
+                    currentImam?.yearJoined + "-01-01",
+                    currentImam?.lastServingDay
+                  ).years}{" "}
+                  years{" "}
+                  {calculateYearsAndMonths(
+                    currentImam?.yearJoined + "-01-01",
+                    currentImam?.lastServingDay
+                  ).months}{" "}
+                  months
+                </Card.Text>
+                <Card.Text>
+                  <strong>Salary:</strong> ${currentImam?.salary || "N/A"}
+                </Card.Text>
+                <Card.Text>
+                  <strong>Contact:</strong> {currentImam?.contactNumber || "N/A"}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
 
-        {/* Imam Bio */}
-        <Col>
-          <Card className="shadow-lg border-0 rounded">
-            <Card.Body>
-              <Card.Title>Imam's Bio</Card.Title>
-              <Card.Text>
-                Imam {currentImam?.imamName || "N/A"} has been serving the
-                community since{" "}
-                {currentImam?.joiningDate
-                  ? moment(currentImam.joiningDate).format("MMMM YYYY")
-                  : "N/A"}
-                . With dedication, he has guided the community spiritually and
-                supported those in need.
-              </Card.Text>
-              <Card.Title>Upcoming Events</Card.Title>
-              <ListGroup variant="flush">
-                <ListGroup.Item>
-                  Lecture on Islamic Ethics - January 15, 2025
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  Community Prayer Session - February 20, 2025
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  Masjid Fundraising Event - March 25, 2025
-                </ListGroup.Item>
-              </ListGroup>
-              <Card.Title>Imam's Vision</Card.Title>
-              <Card.Text>
-                "To strengthen the bonds of the community and foster a place
-                where every individual feels welcome and supported."
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+          {/* Imam Bio */}
+          <Col>
+            <Card className="shadow-lg border-0 rounded">
+              <Card.Body>
+                <Card.Title>Imam's Bio</Card.Title>
+                <Card.Text>
+                  Imam {currentImam?.imamName || "N/A"} has been serving the
+                  community since{" "}
+                  {currentImam?.joiningDate
+                    ? moment(currentImam.joiningDate).format("MMMM YYYY")
+                    : "N/A"}
+                  . With dedication, he has guided the community spiritually and
+                  supported those in need.
+                </Card.Text>
+                <Card.Title>Upcoming Events</Card.Title>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    Lecture on Islamic Ethics - January 15, 2025
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    Community Prayer Session - February 20, 2025
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    Masjid Fundraising Event - March 25, 2025
+                  </ListGroup.Item>
+                </ListGroup>
+                <Card.Title>Imam's Vision</Card.Title>
+                <Card.Text>
+                  "To strengthen the bonds of the community and foster a place
+                  where every individual feels welcome and supported."
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      ) : (
+        <p className="text-center text-muted">No current Imam data found.</p>
+      )}
 
       {/* Imam History */}
       <h3 className="text-center mb-4" style={headingStyle}>
         Imam History
       </h3>
-      <Row xs={1} sm={2} md={3} lg={4} className="g-4">
-        {imamHistory.map((imam) => {
-          const { years, months } = calculateYearsAndMonths(
-            imam.joiningDate,
-            imam.lastServingDate
-          );
-          return (
-            <Col key={imam.imamId}>
-              <Card className="shadow-lg border-0 rounded">
-                <Card.Img
-                  variant="top"
-                  src={imam.imamImage || "/placeholder.jpg"}
-                />
-                <Card.Body>
-                  <Card.Title>{imam.imamName || "Unknown"}</Card.Title>
-                  <Card.Text className="text-muted">Imam</Card.Text>
-                  <Card.Text>
-                    <strong>Joined:</strong>{" "}
-                    {imam.joiningDate
-                      ? moment(imam.joiningDate).format("MMMM YYYY")
-                      : "N/A"}
-                  </Card.Text>
-                  <Card.Text>
-                    <strong>Last Serving Day:</strong>{" "}
-                    {imam.lastServingDate
-                      ? moment(imam.lastServingDate).format("MMMM YYYY")
-                      : "N/A"}
-                  </Card.Text>
-                  <Card.Text>
-                    <strong>Total Service:</strong> {years} years {months} months
-                  </Card.Text>
-                  <Card.Text>
-                    <strong>Salary:</strong> ${imam.salary || "N/A"}
-                  </Card.Text>
-                  <Card.Text>
-                    <strong>Contact:</strong> {imam.contactNumber || "N/A"}
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          );
-        })}
-      </Row>
+      {imamHistory.length > 0 ? (
+        <Row xs={1} sm={2} md={3} lg={4} className="g-4">
+          {imamHistory.map((imam) => {
+            const { years, months } = calculateYearsAndMonths(
+              imam.joiningDate,
+              imam.lastServingDate
+            );
+            return (
+              <Col key={imam.imamId}>
+                <Card className="shadow-lg border-0 rounded">
+                  <Card.Img
+                    variant="top"
+                    src={imam.imamImage || "/placeholder.jpg"}
+                  />
+                  <Card.Body>
+                    <Card.Title>{imam.imamName || "Unknown"}</Card.Title>
+                    <Card.Text className="text-muted">Imam</Card.Text>
+                    <Card.Text>
+                      <strong>Joined:</strong>{" "}
+                      {imam.joiningDate
+                        ? moment(imam.joiningDate).format("MMMM YYYY")
+                        : "N/A"}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>Last Serving Day:</strong>{" "}
+                      {imam.lastServingDate
+                        ? moment(imam.lastServingDate).format("MMMM YYYY")
+                        : "N/A"}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>Total Service:</strong> {years} years {months} months
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>Salary:</strong> ${imam.salary || "N/A"}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>Contact:</strong> {imam.contactNumber || "N/A"}
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+            );
+          })}
+        </Row>
+      ) : (
+        <p className="text-center text-muted">No Imam history found.</p>
+      )}
 
       {/* Special Roles */}
       <h2 className="text-center mb-4" style={headingStyle}>
         Special Roles
       </h2>
-      <Row xs={1} sm={2} md={3} lg={4} className="g-4">
-        {specialMembers.map((member) => (
-          <Col key={member.id}>
-            <Card className="shadow-lg border-0 rounded">
-              <Card.Img
-                variant="top"
-                src={member.memberPic || "/placeholder.jpg"}
-              />
-              <Card.Body>
-                <Card.Title>{member.name || "N/A"}</Card.Title>
-                <Card.Text className="text-muted">
-                  {member.roleName || "N/A"}
-                </Card.Text>
-                <Card.Text>
-                  <strong>Father's Name:</strong> {member.fatherName || "N/A"}
-                </Card.Text>
-                <Card.Text>
-                  <strong>Contact:</strong> {member.mobileNumber || "N/A"}
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
+      {specialMembers.length > 0 ? (
+        <Row xs={1} sm={2} md={3} lg={4} className="g-4">
+          {specialMembers.map((member) => (
+            <Col key={member.id}>
+              <Card className="shadow-lg border-0 rounded">
+                <Card.Img
+                  variant="top"
+                  src={member.memberPic || "/placeholder.jpg"}
+                />
+                <Card.Body>
+                  <Card.Title>{member.name || "N/A"}</Card.Title>
+                  <Card.Text className="text-muted">
+                    {member.roleName || "N/A"}
+                  </Card.Text>
+                  <Card.Text>
+                    <strong>Father's Name:</strong> {member.fatherName || "N/A"}
+                  </Card.Text>
+                  <Card.Text>
+                    <strong>Contact:</strong> {member.mobileNumber || "N/A"}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      ) : (
+        <p className="text-center text-muted">No special members found.</p>
+      )}
 
       {/* Regular Members */}
       <h2 className="text-center mb-4" style={headingStyle}>
         Village Members
       </h2>
-      <Row xs={1} sm={2} md={3} lg={4} className="g-4">
-        {regularMembers.map((member) => (
-          <Col key={member.id}>
-            <Card className="shadow-lg border-0 rounded">
-              <Card.Img
-                variant="top"
-                src={member.memberPic || "/placeholder.jpg"}
-              />
-              <Card.Body>
-                <Card.Title>{member.name || "N/A"}</Card.Title>
-                <Card.Text className="text-muted">
-                  {member.roleName || "N/A"}
-                </Card.Text>
-                <Card.Text>
-                  <strong>Father's Name:</strong> {member.fatherName || "N/A"}
-                </Card.Text>
-                <Card.Text>
-                  <strong>Contact:</strong> {member.mobileNumber || "N/A"}
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
+      {regularMembers.length > 0 ? (
+        <Row xs={1} sm={2} md={3} lg={4} className="g-4">
+          {regularMembers.map((member) => (
+            <Col key={member.id}>
+              <Card className="shadow-lg border-0 rounded">
+                <Card.Img
+                  variant="top"
+                  src={member.memberPic || "/placeholder.jpg"}
+                />
+                <Card.Body>
+                  <Card.Title>{member.name || "N/A"}</Card.Title>
+                  <Card.Text className="text-muted">
+                    {member.roleName || "N/A"}
+                  </Card.Text>
+                  <Card.Text>
+                    <strong>Father's Name:</strong> {member.fatherName || "N/A"}
+                  </Card.Text>
+                  <Card.Text>
+                    <strong>Contact:</strong> {member.mobileNumber || "N/A"}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      ) : (
+        <p className="text-center text-muted">No members found.</p>
+      )}
     </Container>
   );
 };
