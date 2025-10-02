@@ -5,10 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint:js": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "lint:css": "stylelint \"**/*.{css,scss}\" --fix",
-    "lint": "npm run lint:js && npm run lint:css"
+    "start": "next start"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -48,18 +45,6 @@
     "redux": "^5.0.1",
     "slick-carousel": "^1.8.1",
     "space": "^0.22.2"
-  },
-  "devDependencies": {
-    "eslint": "^8.57.1",
-    "eslint-config-next": "15.1.2",
-    "eslint-config-prettier": "^10.1.8",
-    "prettier": "^3.6.2",
-    "stylelint": "^16.24.0",
-    "stylelint-config-prettier": "^9.0.5",
-    "stylelint-config-recommended": "^17.0.0",
-    "stylelint-config-standard": "^39.0.0",
-    "stylelint-config-tailwindcss": "^1.0.0",
-    "stylelint-order": "^7.0.0"
   },
   "overrides": {
     "react": "^18.2.0",
