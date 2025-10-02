@@ -16,7 +16,7 @@ import ReactPaginate from "react-paginate";
 import { FaSearch, FaPlus, FaEdit } from "react-icons/fa";
 import { toast } from 'react-toastify';  // Importing react-toastify
 import 'react-toastify/dist/ReactToastify.css';  // Import the Toastify CSS
-import "./SadqamemberForm.css";
+import "./SadqaMemberForm.css";
 
 import {
   fetchSadqaMemberData,
