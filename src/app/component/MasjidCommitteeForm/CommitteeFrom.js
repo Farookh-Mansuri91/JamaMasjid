@@ -36,6 +36,7 @@ const MasjidCommitteeForm = () => {
         }
       } catch (error) {
         console.error("Error fetching masjid committee data:", error);
+        
       } finally {
         setIsLoading(false);
       }
@@ -223,7 +224,7 @@ const MasjidCommitteeForm = () => {
 
       {/* Special Roles */}
       <h2 className="text-center mb-4" style={headingStyle}>
-        Special Roles
+        Special Members
       </h2>
       {specialMembers.length > 0 ? (
         <Row xs={1} sm={2} md={3} lg={4} className="g-4">
