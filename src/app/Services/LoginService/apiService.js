@@ -1,5 +1,5 @@
 const userLogin = async (userName, password) => {
-  const API_URL = "https://localhost:7140/api/Login/memberLogin"; // Replace with your actual login API URL
+  const API_URL = "https://api.noorimasjidghanghori.com/api/Login/memberLogin"; // Replace with your actual login API URL
 
   try {
     const response = await fetch(API_URL, {

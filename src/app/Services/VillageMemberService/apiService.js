@@ -2,7 +2,7 @@
 // fetchVillageMemberData
 export const fetchVillageMemberData = async () => {
   try {
-    const response = await fetch('https://localhost:7140/api/VillageMember');
+    const response = await fetch('https://api.noorimasjidghanghori.com/api/VillageMember');
     if (!response.ok) {
       throw new Error('Failed to fetch data from the server.');
     }
@@ -19,7 +19,7 @@ export const addVillageMemberData = async (memberData) => {
     throw new Error("No authentication token found");
   }
 
-  const response = await fetch(`https://localhost:7140/api/VillageMember/addVillageMember`, {
+  const response = await fetch(`https://api.noorimasjidghanghori.com/api/VillageMember/addVillageMember`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export const updateVillageMemberData = async (updatedMemeber) => {
     throw new Error("No authentication token found");
   }
   // Update existing payment record
-  const response = await fetch(`https://localhost:7140/api/VillageMember/updateVillageMember`, {
+  const response = await fetch(`https://api.noorimasjidghanghori.com/api/VillageMember/updateVillageMember`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ export const updateVillageMemberData = async (updatedMemeber) => {
 // fetchPaymentTrackerData
 export const fetchPaymentTrackerData = async () => {
   try {
-    const response = await fetch('https://localhost:7140/api/VillageMember/payments');
+    const response = await fetch('https://api.noorimasjidghanghori.com/api/VillageMember/payments');
     if (!response.ok) {
       throw new Error('Failed to fetch data from the server.');
     }
@@ -91,7 +91,7 @@ export const addVillageMemberPaymentData = async (addPayment) => {
     throw new Error("No authentication token found");
   }
   // Add new payment record
-  const response = await fetch(`https://localhost:7140/api/VillageMember/payments`, {
+  const response = await fetch(`https://api.noorimasjidghanghori.com/api/VillageMember/payments`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ export const updateVillageMemberPaymentData = async (memberId, year, updatedPaym
     throw new Error("No authentication token found");
   }
   // Update existing payment record
-  const response = await fetch(`https://localhost:7140/api/VillageMember/payments/${memberId}/${year}`, {
+  const response = await fetch(`https://api.noorimasjidghanghori.com/api/VillageMember/payments/${memberId}/${year}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ export const updateVillageMemberPaymentData = async (memberId, year, updatedPaym
 // fetch Mohalla Data
 export const fetchMohallas = async () => {
   try {
-    const response = await fetch('https://localhost:7140/api/VillageMember/mohalla');
+    const response = await fetch('https://api.noorimasjidghanghori.com/api/VillageMember/mohalla');
     if (!response.ok) {
       throw new Error('Failed to fetch data from the server.');
     }
@@ -158,7 +158,7 @@ export const fetchMohallas = async () => {
 // fetch Village Data
 export const fetchVillages = async () => {
   try {
-    const response = await fetch('https://localhost:7140/api/VillageMember/villages');
+    const response = await fetch('https://api.noorimasjidghanghori.com/api/VillageMember/villages');
     if (!response.ok) {
       throw new Error('Failed to fetch data from the server.');
     }

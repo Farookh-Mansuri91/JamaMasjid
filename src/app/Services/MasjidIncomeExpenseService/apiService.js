@@ -2,7 +2,7 @@
 
 export const fetchMasjidIncomeExpensesData = async () => {
     try {
-      const response = await fetch(`https://localhost:7140/GetIncomeExpenseData`);
+      const response = await fetch(`https://api.noorimasjidghanghori.com/api/GetIncomeExpenseData`);
       if (!response.ok) {
         throw new Error('Failed to fetch data from the server.');
       }

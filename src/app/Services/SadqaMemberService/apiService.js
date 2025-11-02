@@ -1,7 +1,7 @@
 // apiService.js
 export const fetchSadqaMemberData = async () => {
   try {
-    const response = await fetch('https://localhost:7140/api/SadqaMember/getSadqaMember');
+    const response = await fetch('https://api.noorimasjidghanghori.com/api/SadqaMember/getSadqaMember');
     if (!response.ok) {
       throw new Error('Failed to fetch data from the server.');
     }
@@ -17,7 +17,7 @@ export const addSadqaMemberData = async (modalData) => {
   // if (!token) {
   //   throw new Error("No authentication token found");
   // }
-  const response = await fetch(`https://localhost:7140/api/SadqaMember/addSadqaMember`, {
+  const response = await fetch(`https://api.noorimasjidghanghori.com/api/SadqaMember/addSadqaMember`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export const updateSadqaMemberData = async (updatedMemeber) => {
   //   throw new Error("No authentication token found");
   // }
   // Update existing payment record
-  const response = await fetch(`https://localhost:7140/api/SadqaMember/updateSadqaMember`, {
+  const response = await fetch(`https://api.noorimasjidghanghori.com/api/SadqaMember/updateSadqaMember`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export const updateSadqaMemberData = async (updatedMemeber) => {
 //new
 export const fetchSadqaMemberPaymentData = async () => {
   try {
-    const response = await fetch('https://localhost:7140/api/SadqaMember/sadqaMemberPayments');
+    const response = await fetch('https://api.noorimasjidghanghori.com/api/SadqaMember/sadqaMemberPayments');
     if (!response.ok) {
       throw new Error('Failed to fetch data from the server.');
     }
@@ -89,7 +89,7 @@ export const addSadqaPaymentData = async (paymentData) => {
   //   throw new Error("No authentication token found");
   // }
 
-  const response = await fetch(`https://localhost:7140/api/SadqaMember/addSadqaPayment`, {
+  const response = await fetch(`https://api.noorimasjidghanghori.com/api/SadqaMember/addSadqaPayment`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -118,7 +118,7 @@ export const addSadqaPaymentData = async (paymentData) => {
 
 
 export const updateSadqaPaymentData = async (paymentData) => {
-  const response = await fetch(`https://localhost:7140/api/SadqaMember/updateSadqaPayments`, {
+  const response = await fetch(`https://api.noorimasjidghanghori.com/api/SadqaMember/updateSadqaPayments`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

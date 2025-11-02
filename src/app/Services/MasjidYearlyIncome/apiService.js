@@ -1,7 +1,7 @@
 // fetchMasjidYearlyIncomeData
 export const fetchMasjidYearlyIncomeData = async () => {
   try {
-    const response = await fetch(`https://localhost:7140/api/YearlyIncome/masjidYearlyIncome`);
+    const response = await fetch(`https://api.noorimasjidghanghori.com/api/YearlyIncome/masjidYearlyIncome`);
     if (!response.ok) {
       throw new Error('Failed to fetch data from the server.');
     }
@@ -13,7 +13,7 @@ export const fetchMasjidYearlyIncomeData = async () => {
 };
 
 export const addMasjidIncometData = async (paymentData) => {
-  const response = await fetch(`https://localhost:7140/api/YearlyIncome/addMasjidYearlyPayment`, {
+  const response = await fetch(`https://api.noorimasjidghanghori.com/api/YearlyIncome/addMasjidYearlyPayment`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -38,7 +38,7 @@ export const addMasjidIncometData = async (paymentData) => {
 
 
 export const updateMasjidIncomeData = async (paymentData) => {
-  const response = await fetch(`https://localhost:7140/api/YearlyIncome/updateMasjidYearlyPayment`, {
+  const response = await fetch(`https://api.noorimasjidghanghori.com/api/YearlyIncome/updateMasjidYearlyPayment`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

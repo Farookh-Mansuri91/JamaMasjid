@@ -1,6 +1,6 @@
 export const fetchYearlyExpensesData = async (year) => {
     try {
-      const response = await fetch(`https://localhost:7140/api/YearlyExpense?year=${year}`);
+      const response = await fetch(`https://api.noorimasjidghanghori.com/api/YearlyExpense?year=${year}`);
       if (!response.ok) {
         throw new Error('Failed to fetch data from the server.');
       }
@@ -12,7 +12,7 @@ export const fetchYearlyExpensesData = async (year) => {
   };
 
   export const addExpenseData = async (expenseData) => {
-    const response = await fetch(`https://localhost:7140/api/YearlyExpense/addExpense`, {
+    const response = await fetch(`https://api.noorimasjidghanghori.com/api/YearlyExpense/addExpense`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -37,7 +37,7 @@ export const fetchYearlyExpensesData = async (year) => {
   
   
   export const updateExpenseData = async (expenseData) => {
-    const response = await fetch(`https://localhost:7140/api/YearlyExpense/updateExpense`, {
+    const response = await fetch(`https://api.noorimasjidghanghori.com/api/YearlyExpense/updateExpense`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
