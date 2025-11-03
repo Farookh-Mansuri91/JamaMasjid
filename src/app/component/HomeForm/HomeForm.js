@@ -99,8 +99,8 @@ const HomePage = () => {
               <Container>
                 <Row className="align-items-start text-white flex-column flex-md-row">
                   <Col md={8} className="p-4 bg-dark bg-opacity-75 rounded">
-                    <h2 className="text-warning text-center text-md-start">Welcome to Jama Masjid</h2>
-                    <p className="text-light text-justify">Jama Masjid is a historic center for worship and community service, aiming to uplift and support people through spiritual and social initiatives.</p>
+                    <h2 className="text-warning text-center text-md-start">Welcome to Noori Masjid</h2>
+                    <p className="text-light text-justify">Noori Masjid is a historic center for worship and community service, aiming to uplift and support people through spiritual and social initiatives.</p>
                     <h3 className="text-info text-center text-md-start">Islamic Articles</h3>
                     <p className="text-light text-justify">يؤكد الإسلام على الكرم وأهمية الصدقة. العطاء وسيلة تطهير وطريقة لطلب البركة من الله.</p>
                   </Col>
@@ -147,7 +147,7 @@ const HomePage = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
                 >
-                  Support Jama Masjid
+                  Support Noori Masjid
                 </motion.h2>
                 <p className="text-muted">Your generous donations help maintain and support our community. Every contribution makes a difference.</p>
 

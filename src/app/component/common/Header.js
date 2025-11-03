@@ -51,7 +51,7 @@ const Header = () => {
             <div className="col-lg-8 col-12 d-flex flex-wrap justify-content-between">
               <div className="contact-info d-flex align-items-center">
                 <i className="bi-geo-alt me-2"></i>
-                <p className="mb-0">Ghanghori Jama Masjid, Bhojipura, Bareilly, UP, India</p>
+                <p className="mb-0">Ghanghori Noori Masjid, Bhojipura, Bareilly, UP, India</p>
               </div>
               <div className="contact-info d-flex align-items-center">
                 <i className="bi-envelope me-2"></i>
@@ -64,7 +64,7 @@ const Header = () => {
           <div className="row mt-2">
             <div className="col-12 d-flex justify-content-between align-items-center">
               <div className="masjid-title">
-                <h2 className="text-center mb-4" style={headingStyle}>Jama Masjid</h2>
+                <h2 className="text-center mb-4" style={headingStyle}>Noori Masjid</h2>
               </div>
               {loggedIn && (
                 <div className="user-info d-flex align-items-center">

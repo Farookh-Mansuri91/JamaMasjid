@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Container, Row, Col, Card, Table } from "react-bootstrap";
-import { motion } from "framer-motion";
+import { color, motion } from "framer-motion";
 
 // Sample Sehri & Iftar Times for 2025
 const ramadanTimings = [
@@ -75,8 +75,8 @@ const RamadanTimetable = () => {
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <h4>Next Sehri: <span className="text-warning">{nextSehri}</span></h4>
-                <h4>Next Iftar: <span className="text-success">{nextIftar}</span></h4>
+                <h4 style={{ color: 'white' }}>Next Sehri: <span className="text-warning">{nextSehri}</span></h4>
+               <h4 style={{ color: 'white' }}>Next Iftar: <span className="text-success">{nextIftar}</span></h4>
                 <h5 className="mt-2">{countdown}</h5>
               </motion.div>
 

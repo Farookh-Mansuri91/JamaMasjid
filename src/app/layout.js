@@ -6,7 +6,7 @@ import Footer from "./component/common/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Jama Masjid",
+  title: "Noori Masjid",
   description: "Donation App",
 };
 
