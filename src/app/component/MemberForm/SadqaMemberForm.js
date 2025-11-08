@@ -226,7 +226,7 @@ const SadqaMember = () => {
               disabled={loadingButton === "paymentTracker"}
             >
               {loadingButton === "paymentTracker" && <Spinner animation="border" size="sm" />}
-              View Details
+              Payment Details
             </Button>
           </Col>
         </Row>
