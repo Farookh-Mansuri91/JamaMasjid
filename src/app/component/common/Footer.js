@@ -16,7 +16,7 @@ const Footer = () => {
             <ul className="list-unstyled">
               <li><i className="bi-geo-alt me-2"></i> Ghanghori Masjid, Bhojipura, Bareilly, UP, India</li>
               <li><i className="bi-envelope me-2"></i><a href="mailto:info@noorisunnimasjid.com" className="text-white">info@noorisunnimasjid.com</a></li>
-              <li><i className="bi-phone me-2"></i> +91-1234567890</li>
+              <li><i className="bi-phone me-2"></i> +91-9818437359</li>
             </ul>
           </Col>
 
@@ -59,7 +59,7 @@ const Footer = () => {
         {/* Footer Bottom Section */}
         <Row className="mt-4">
           <Col className="text-center">
-            <p>&copy; {new Date().getFullYear()} Sunni Noori Masjid | All Rights Reserved</p>
+            <p>&copy; {new Date().getFullYear()} Noori Masjid Ghanghori | All Rights Reserved</p>
           </Col>
         </Row>
       </Container>
