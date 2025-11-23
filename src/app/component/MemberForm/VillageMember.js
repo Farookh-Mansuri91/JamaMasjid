@@ -111,10 +111,10 @@ const VillageMember = () => {
     if (!modalData.firstName?.trim()) newErrors.firstName = "First Name is required.";
     if (!modalData.lastName?.trim()) newErrors.lastName = "Last Name is required.";
     if (!modalData.fatherName?.trim()) newErrors.fatherName = "Father's Name is required.";
-    if (!modalData.mobile?.trim()) {
-      newErrors.mobile = "Mobile number is required.";
-    } else if (!/^\d{10}$/.test(modalData.mobile)) {
-      newErrors.mobile = "Mobile number must be 10 digits.";
+    if (!modalData.mobileNumber?.trim()) {
+      newErrors.mobileNumber = "Mobile number is required.";
+    } else if (!/^\d{10}$/.test(modalData.mobileNumber)) {
+      newErrors.mobileNumber = "Mobile number must be 10 digits.";
     }
     if (!modalData.mohallaId) newErrors.mohallaId = "Mohalla is required.";
 
@@ -148,7 +148,7 @@ const VillageMember = () => {
       toast.error('Failed to save member data.');
     }
   };
-
+  
   if (!isClient || isLoading) {
     return (
       <div className="loader-container">
@@ -237,7 +237,7 @@ const VillageMember = () => {
               <th>Last Name</th>
               <th>Father Name</th>
               <th>Mohalla</th>
-              <th>Mobile</th>
+              {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && (<th>Mobile Number</th>)}
               {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && (<th>Actions</th>)}
             </tr>
           </thead>
@@ -256,7 +256,7 @@ const VillageMember = () => {
                   <td>{member.lastName}</td>
                   <td>{member.fatherName}</td>
                   <td>{member.mohallaName}</td>
-                  <td>{member.mobile}</td>
+                  {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && (<td>{member.mobileNumber}</td>)}
                   {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && (<td>
                     <Button
                       variant="primary"
@@ -340,11 +340,18 @@ const VillageMember = () => {
               <Form.Control
                 type="text"
                 placeholder="Enter mobile number"
-                value={modalData.mobile || ""}
-                onChange={(e) => handleInputChange("mobile", e.target.value)}
-                isInvalid={!!errors.mobile}
+                value={modalData.mobileNumber || ""}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  // Allow ONLY digits
+                  if (/^\d*$/.test(value)) {
+                    handleInputChange("mobileNumber", value);
+                  }
+                }}
+                maxLength={10}  // Prevents more than 10 digits
+                isInvalid={!!errors.mobileNumber}
               />
-              <Form.Control.Feedback type="invalid">{errors.mobile}</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">{errors.mobileNumber}</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-3">
