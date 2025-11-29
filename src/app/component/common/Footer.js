@@ -27,6 +27,7 @@ const Footer = () => {
               <Nav.Link href="/Home" className="text-white">Home</Nav.Link>
               <Nav.Link href="/SadqaMemberList" className="text-white">Sadqa Member</Nav.Link>
               <Nav.Link href="/VillageMemberList" className="text-white">Village Member</Nav.Link>
+              <Nav.Link href="/IncomeDetails" className="text-white">Masjid Income</Nav.Link>
               <Nav.Link href="/MasjidGullak" className="text-white">Masjid Gullak</Nav.Link>
               <Nav.Link href="/MasjidCommitteeList" className="text-white">Masjid Committee</Nav.Link>
               <Nav.Link href="/Contact" className="text-white">Contact</Nav.Link>

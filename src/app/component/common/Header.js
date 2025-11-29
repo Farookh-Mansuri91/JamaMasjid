@@ -95,6 +95,7 @@ const NavbarNew = ({ loggedIn, handleLogout }) => {
               { href: "/Home", label: "Home" },
               { href: "/SadqaMemberList", label: "Sadqa Members" },
               { href: "/VillageMemberList", label: "Village Members" },
+               { href: "/IncomeDetails", label: "Masjid Income" },
               { href: "/MasjidGullak", label: "Masjid Gullak" },
               { href: "/MasjidCommitteeList", label: "Masjid Committee" }, // <-- This needs special styling
               { href: "/Contact", label: "Contact" }
