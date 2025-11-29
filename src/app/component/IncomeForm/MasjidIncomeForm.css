@@ -226,3 +226,144 @@ h2 {
       padding: 0 15px !important; /* Add padding for small screens */
     }
   }
+  /* ===== Blue Modern Theme & Compact Table Enhancements ===== */
+
+/* Table wrapper for horizontal scroll on very small screens */
+.responsive-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+}
+
+/* Compact table visuals */
+.table-modern {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(13,110,253,0.06);
+  background: white;
+}
+
+.table-head th, .table-modern thead th {
+  background: linear-gradient(180deg, #0d6efd 0%, #0b5ed7 100%);
+  color: #fff;
+  border: 0;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Compact cell */
+.compact-cell {
+  padding: 6px 8px;
+  font-size: 0.92rem;
+}
+
+/* Payment highlight pill */
+.highlight-cell {
+  display: inline-block;
+  margin: 3px 0;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: #f8f9ff;
+  color: #0b5ed7;
+  font-weight: 600;
+}
+
+/* Make headers and cells readable on very small screens */
+@media (max-width: 576px) {
+  .table-modern th {
+    font-size: 0.78rem;
+    padding: 8px 6px;
+  }
+
+  .table-modern td {
+    font-size: 0.82rem;
+    padding: 8px 6px;
+  }
+
+  .compact-table .highlight-cell {
+    display: block;
+    width: 100%;
+  }
+}
+
+/* Ensure table doesn't collapse headers into multiple rows */
+.table-modern th {
+  white-space: nowrap;
+}
+
+/* Buttons */
+button.rounded-pill, .btn.rounded-pill {
+  border-radius: 40px !important;
+}
+
+/* Small polish */
+.search-input .form-control {
+  border-left: none;
+}
+.search-input .input-group-text {
+  border-right: none;
+  background: #eef5ff;
+  color: #0d6efd;
+}
+
+/* Loader style - ensure overlay looks modern */
+.loader-container {
+  align-items: center;
+  background: rgba(0,0,0,0.36);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+/* compact-cell specific tweaks for mobile readable layout */
+.compact-cell {
+  display: block;
+}
+
+/* small spacing for table wrapper */
+.responsive-table-wrapper { padding: 8px; background: #f6f9ff; border-radius: 12px; }
+/* Ensures alignment between Edit buttons and payment rows */
+.action-column-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.action-edit-btn {
+    width: 100%;
+}
+
+/* FIX mobile misalignment of PaymentDate & Amount columns */
+@media (max-width: 768px) {
+    td .highlight-cell {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+        width: 100%;
+        padding: 6px 10px !important;
+        margin-bottom: 4px;
+    }
+
+    td {
+        vertical-align: top !important;
+    }
+}
+
+/* Fix alignment for date/amount/paidTo vs Edit button */
+td.align-top {
+    vertical-align: top !important;
+}
+
+.action-edit-btn {
+    display: block;
+    margin-bottom: 6px;
+    width: 100%; /* Keeps alignment consistent */
+}
+

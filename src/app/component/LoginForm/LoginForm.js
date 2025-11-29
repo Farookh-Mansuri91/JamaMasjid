@@ -45,6 +45,8 @@ const LoginPage = () => {
         localStorage.setItem("token", response.token);
         localStorage.setItem("role", response.role);
         localStorage.setItem("userName", response.userName);
+        localStorage.setItem("userId", response.userId);
+        localStorage.setItem("memberId", response.memberId);
         setAlertMessage("Login successful!");
         setAlertVariant("success");
         setShowAlert(true);

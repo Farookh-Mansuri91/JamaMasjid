@@ -16,7 +16,9 @@ import {
   Form,
   Table,
   InputGroup,
-  Modal, Spinner
+  Modal,
+  Spinner,
+  Collapse
 } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import {
@@ -24,13 +26,13 @@ import {
   addVillageMemberData,
   updateVillageMemberData,
   fetchMohallas,
-} from "../../Services/VillageMemberService/apiService"; // Service methods
-import { FaSearch, FaPlus, FaEdit } from "react-icons/fa";
+} from "../../Services/VillageMemberService/apiService";
+import { FaSearch, FaPlus, FaEdit, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const VillageMember = () => {
   const [searchText, setSearchText] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
-  const [perPage, setPerPage] = useState(10);
+  const [perPage] = useState(10);
   const [isClient, setIsClient] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -41,26 +43,26 @@ const VillageMember = () => {
   const [isEdit, setIsEdit] = useState(false);
   const isUserAuthenticated = useMemo(() => (isClient ? isAuthenticated() : false), [isClient]);
   const userRole = useMemo(() => (isClient ? getUserRole() : null), [isClient]);
-  const router = useRouter(); // ✅ Initialize router
-  const [loadingButton, setLoadingButton] = useState(null); // Track which button is loading
+  const router = useRouter();
+  const [loadingButton, setLoadingButton] = useState(null);
+  const [expandedRow, setExpandedRow] = useState(null); // for row expansion
 
   const handleNavigate = (path, buttonType) => {
-    setLoadingButton(buttonType); // Set the loading state for the clicked button
+    setLoadingButton(buttonType);
     setTimeout(() => {
-      router.push(path); // Navigate after delay
-      //setLoadingButton(null); // Reset loader after navigation
+      router.push(path);
     }, 300);
   };
 
   const headingStyle = {
     fontFamily: "'Poppins', sans-serif",
-    fontWeight: "600",
-    fontSize: "1.5rem",
+    fontWeight: "700",
+    fontSize: "1.6rem",
     color: "#0d6efd",
     textAlign: "center",
     textTransform: "uppercase",
-    letterSpacing: "2px",
-    marginBottom: "2rem",
+    letterSpacing: "1.5px",
+    marginBottom: "1.5rem",
   };
 
   useEffect(() => {
@@ -70,9 +72,11 @@ const VillageMember = () => {
           fetchVillageMemberData(),
           fetchMohallas(),
         ]);
-        setData(members);
-        setMohallas(mohallasData);
+        setData(members || []);
+        setMohallas(mohallasData || []);
       } catch (error) {
+        console.error(error);
+        toast.error("Failed to load data.");
       } finally {
         setIsLoading(false);
       }
@@ -82,15 +86,14 @@ const VillageMember = () => {
   }, []);
 
   const filteredData = useMemo(() => {
+    const t = searchText.trim().toLowerCase();
+    if (!t) return data;
     return data.filter((item) =>
-      `${item.firstName} ${item.lastName}`.toLowerCase().includes(searchText.toLowerCase())
+      `${item.firstName ?? ""} ${item.lastName ?? ""}`.toLowerCase().includes(t)
     );
   }, [searchText, data]);
 
-  const handlePageChange = ({ selected }) => {
-    setCurrentPage(selected);
-  };
-
+  const handlePageChange = ({ selected }) => setCurrentPage(selected);
   const currentData = filteredData.slice(currentPage * perPage, (currentPage + 1) * perPage);
 
   const handleModalClose = () => {
@@ -124,13 +127,11 @@ const VillageMember = () => {
 
   const handleInputChange = (field, value) => {
     setModalData({ ...modalData, [field]: value });
-    if (errors[field]) {
-      setErrors({ ...errors, [field]: null });
-    }
+    if (errors[field]) setErrors({ ...errors, [field]: null });
   };
 
   const handleSaveMember = async (event) => {
-    event?.preventDefault(); // Prevent default only if event exists
+    event?.preventDefault();
     if (!validateForm()) return;
 
     try {
@@ -142,13 +143,16 @@ const VillageMember = () => {
         toast.success('Member added successfully!');
       }
       const updatedData = await fetchVillageMemberData();
-      setData(updatedData);
+      setData(updatedData || []);
       handleModalClose();
     } catch (error) {
+      console.error(error);
       toast.error('Failed to save member data.');
     }
   };
-  
+
+  const toggleExpand = (id) => setExpandedRow(expandedRow === id ? null : id);
+
   if (!isClient || isLoading) {
     return (
       <div className="loader-container">
@@ -168,137 +172,155 @@ const VillageMember = () => {
   return (
     <div className="card" style={{ position: "relative" }}>
       <div className="container my-4">
-        <h2 className="text-center mb-4" style={headingStyle}>
-          Village Member
-        </h2>
+        <h2 style={headingStyle}>Village Member</h2>
         {/* Back Button - Right aligned on mobile, Left on tablets/desktops */}
         <div className="d-flex justify-content-md-start justify-content-end mb-3">
           <BackButton />
         </div>
-        <Row className="align-items-center mb-4 g-3">
-          {/* Search Input - Takes more space on large screens */}
-          <Col xs={12} md={5} lg={6}>
-            <InputGroup>
-              <InputGroup.Text
-                style={{
-                  backgroundColor: "#f1f3f5",
-                  borderRight: "none",
-                  borderRadius: "50px 0 0 50px",
-                  padding: "10px",
-                }}
-              >
-                <FaSearch style={{ color: "#007bff" }} />
+        <div className="d-flex justify-content-between align-items-center mb-3 flex-column flex-md-row gap-3">
+          <div className="d-flex align-items-center w-100 w-md-50">
+            <InputGroup className="me-2 w-100">
+              <InputGroup.Text style={{ background: "#f6f8fb", borderRight: "none" }}>
+                <FaSearch style={{ color: "#0d6efd" }} />
               </InputGroup.Text>
               <Form.Control
-                placeholder="Search by First Name..."
+                placeholder="Search by first or last name..."
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
-                style={{
-                  borderLeft: "none",
-                  borderRadius: "0 50px 50px 0",
-                  padding: "10px 15px",
-                }}
+                aria-label="Search members"
+                style={{ borderLeft: "none" }}
               />
             </InputGroup>
-          </Col>
+          </div>
 
-          {/* Buttons - Stay in a single row */}
-          <Col xs={12} md={7} lg={6} className="d-flex flex-wrap justify-content-center justify-content-md-end gap-2">
-            {/* Add Member Button (Shown for Admin & Member roles) */}
+          <div className="d-flex gap-2 justify-content-end">
             {(isUserAuthenticated && (userRole === "Member" || userRole === "Admin")) && (
-              <Button
-                variant="primary"
-                className="rounded-pill shadow-sm"
-                onClick={() => handleModalOpen({})}>
-                <FaPlus className="me-2" />
-                Add Member
+              <Button variant="primary" className="d-flex align-items-center rounded-pill" onClick={() => handleModalOpen({})}>
+                <FaPlus className="me-2" /> Add New Member
               </Button>
             )}
 
-            {/* View Details Button */}
             <Button
               variant="success"
-              className="d-flex align-items-center justify-content-center gap-2 rounded-pill px-4 shadow-sm"
+              className="d-flex align-items-center rounded-pill"
               onClick={() => handleNavigate("/PaymentTrackerList", "paymentTracker")}
               disabled={loadingButton === "paymentTracker"}
             >
-              {loadingButton === "paymentTracker" && <Spinner animation="border" size="sm" />}
-              Payment Details
+              {loadingButton === "paymentTracker" ? <Spinner animation="border" size="sm" /> : "Payment Details"}
             </Button>
-          </Col>
-        </Row>
+          </div>
+        </div>
 
-
-        <Table striped bordered hover responsive className="table-modern">
-          <thead className="table-dark">
-            <tr>
-              <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Father Name</th>
-              <th>Mohalla</th>
-              {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && (<th>Mobile Number</th>)}
-              {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && (<th>Actions</th>)}
-            </tr>
-          </thead>
-          <tbody>
-            {currentData.length === 0 ? (
+        <div className="table-responsive modern-table-wrapper">
+          <Table bordered hover className="table-modern align-middle">
+            <thead className="table-head">
               <tr>
-                <td colSpan="7" className="text-center">
-                  No members found
-                </td>
+                <th style={{ width: 50 }}>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Father Name</th>
+                <th>Mohalla</th>
+                {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && <th>Mobile Number</th>}
+                {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && <th style={{ width: 120 }}>Actions</th>}
               </tr>
-            ) : (
-              currentData.map((member, index) => (
-                <tr key={member.id || `${member.firstName}-${member.lastName}-${index}`}>
-                  <td>{currentPage * perPage + index + 1}</td>
-                  <td>{member.firstName}</td>
-                  <td>{member.lastName}</td>
-                  <td>{member.fatherName}</td>
-                  <td>{member.mohallaName}</td>
-                  {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && (<td>{member.mobileNumber}</td>)}
-                  {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && (<td>
-                    <Button
-                      variant="primary"
-                      size="sm"
-                      className="me-2"
-                      onClick={() => handleModalOpen(member)}
-                    >
-                      Edit
-                      {/* <FaEdit /> */}
-                    </Button>
-                  </td>)}
-                </tr>
-              ))
-            )}
-          </tbody>
-        </Table>
+            </thead>
 
-        <ReactPaginate
-          previousLabel={"Previous"}
-          nextLabel={"Next"}
-          breakLabel={"..."}
-          pageCount={Math.ceil(filteredData.length / perPage)}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-          onPageChange={handlePageChange}
-          containerClassName={"pagination justify-content-center"}
-          activeClassName={"active"}
-          pageClassName={"page-item"}
-          pageLinkClassName={"page-link"}
-          previousClassName={"page-item"}
-          previousLinkClassName={"page-link"}
-          nextClassName={"page-item"}
-          nextLinkClassName={"page-link"}
-        />
+            <tbody>
+              {currentData.length === 0 ? (
+                <tr>
+                  <td colSpan={7} className="text-center py-4">No members found</td>
+                </tr>
+              ) : (
+                currentData.map((member, idx) => {
+                  const idKey = member.id ?? `${member.firstName}-${member.lastName}-${idx}`;
+                  const rowIndex = currentPage * perPage + idx + 1;
+                  // Optional: assume API returns an array member.mohallaMembers for the mohalla's committee members.
+                  const mohallaMembers = member.mohallaMembers || member.membersOfMohalla || []; 
+
+                  return (
+                    <React.Fragment key={idKey}>
+                      <tr className="align-middle">
+                        <td>{rowIndex}</td>
+                        <td>{member.firstName}</td>
+                        <td>{member.lastName}</td>
+                        <td>{member.fatherName}</td>
+                        <td>{member.mohallaName}</td>
+                        {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && <td>{member.mobileNumber || "-"}</td>}
+                        {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && (
+                          <td>
+                            <div className="d-flex gap-2 align-items-center">
+                              <Button variant="outline-primary" size="sm" onClick={() => handleModalOpen(member)}>
+                                <FaEdit className="me-1" /> Edit
+                              </Button>
+                              <Button
+                                variant="outline-secondary"
+                                size="sm"
+                                aria-expanded={expandedRow === idKey}
+                                onClick={() => toggleExpand(idKey)}
+                              >
+                                {expandedRow === idKey ? <><FaChevronUp /> Hide</> : <><FaChevronDown /> Show</>}
+                              </Button>
+                            </div>
+                          </td>
+                        )}
+                      </tr>
+
+                      {/* Expandable row for mohalla members */}
+                      <tr>
+                        <td colSpan={isUserAuthenticated && (userRole === "Member" || userRole === "Admin") ? 7 : 6} className="p-0 border-0">
+                          <Collapse in={expandedRow === idKey}>
+                            <div className="p-3 border-top bg-white">
+                              <div className="d-flex flex-column flex-md-row gap-3 align-items-start">
+                                {mohallaMembers.length > 0 ? (
+                                  mohallaMembers.map((mm) => (
+                                    <div key={mm.memberId ?? mm.id ?? mm.name} className="mohalla-card p-2">
+                                      <div className="mohalla-name fw-bold">{mm.name ?? `${mm.firstName ?? ""} ${mm.lastName ?? ""}`}</div>
+                                      {mm.mobileNumber || mm.mobile ? <div className="small text-muted">{mm.mobileNumber || mm.mobile}</div> : <div className="small text-muted">No mobile</div>}
+                                    </div>
+                                  ))
+                                ) : (
+                                  <div className="text-muted">No committee members found for this mohalla.</div>
+                                )}
+                              </div>
+                            </div>
+                          </Collapse>
+                        </td>
+                      </tr>
+                    </React.Fragment>
+                  );
+                })
+              )}
+            </tbody>
+          </Table>
+        </div>
+
+        <div className="d-flex justify-content-center mt-3">
+          <ReactPaginate
+            previousLabel={"Previous"}
+            nextLabel={"Next"}
+            breakLabel={"..."}
+            pageCount={Math.ceil(filteredData.length / perPage)}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={handlePageChange}
+            containerClassName={"pagination justify-content-center"}
+            activeClassName={"active"}
+            pageClassName={"page-item"}
+            pageLinkClassName={"page-link"}
+            previousClassName={"page-item"}
+            previousLinkClassName={"page-link"}
+            nextClassName={"page-item"}
+            nextLinkClassName={"page-link"}
+          />
+        </div>
       </div>
 
       <Modal show={showModal} onHide={handleModalClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>{isEdit ? "Edit Member" : "Add Member"}</Modal.Title>
+          <Modal.Title>{isEdit ? "Edit Member" : "Add New Member"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={handleSaveMember}>
             <Form.Group className="mb-3">
               <Form.Label>First Name</Form.Label>
               <Form.Control
@@ -343,12 +365,9 @@ const VillageMember = () => {
                 value={modalData.mobileNumber || ""}
                 onChange={(e) => {
                   const value = e.target.value;
-                  // Allow ONLY digits
-                  if (/^\d*$/.test(value)) {
-                    handleInputChange("mobileNumber", value);
-                  }
+                  if (/^\d*$/.test(value)) handleInputChange("mobileNumber", value);
                 }}
-                maxLength={10}  // Prevents more than 10 digits
+                maxLength={10}
                 isInvalid={!!errors.mobileNumber}
               />
               <Form.Control.Feedback type="invalid">{errors.mobileNumber}</Form.Control.Feedback>
@@ -373,12 +392,8 @@ const VillageMember = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleModalClose}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={() => handleSaveMember()}>
-            Save Changes
-          </Button>
+          <Button variant="secondary" onClick={handleModalClose}>Cancel</Button>
+          <Button variant="primary" onClick={handleSaveMember}>Save</Button>
         </Modal.Footer>
       </Modal>
     </div>

@@ -60,3 +60,13 @@
     color: white !important;
   }
   
+  /* VillageMember.css additions */
+.table-modern { border-radius: 12px; overflow: hidden; box-shadow: 0 4px 14px rgba(13,110,253,0.06); }
+.table-head th { background: #0d6efd; color: #fff; border: 0; font-weight: 600; }
+.mohalla-card { min-width: 160px; border: 1px solid #eef3ff; border-radius: 8px; padding: 0.6rem; background: #fbfdff; }
+.mohalla-card .mohalla-name { font-size: 0.95rem; color: #0b5ed7; }
+.modern-table-wrapper .table { margin-bottom: 0; }
+button.rounded-pill { border-radius: 40px !important; }
+@media (max-width: 768px) {
+  .mohalla-card { min-width: 130px; }
+}

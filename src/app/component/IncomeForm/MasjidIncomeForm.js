@@ -7,7 +7,7 @@ import { format } from 'date-fns';
 import 'react-toastify/dist/ReactToastify.css';  // Import the Toastify CSS
 import './MasjidIncomeForm.css';  // Import the custom styles
 import { fetchMasjidYearlyIncomeData, updateMasjidIncomeData, addMasjidIncometData } from '../../Services/MasjidYearlyIncome/apiService'; // Import the service layer
-import { isAuthenticated, getUserRole } from "../../Utils/authHelpers"; // Authentication utils
+import { isAuthenticated, getUserRole, getUserData } from "../../Utils/authHelpers"; // Authentication utils
 import BackButton from "../common/BackButton";
 const PaymentTracker = () => {
     const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -37,7 +37,7 @@ const PaymentTracker = () => {
     const [formErrors, setFormErrors] = useState({});
     const [selectedPayment, setSelectedPayment] = useState(null);  // Add selected payment state
 
-  const initialYears = [2023, 2024, 2025, 2026];  // Define the fixed year list
+    const initialYears = [2023, 2024, 2025, 2026];  // Define the fixed year list
     const [isClient, setIsClient] = useState(false); // Client-side rendering flag
     const [isLoading, setIsLoading] = useState(true); // Loading state
     const [error, setError] = useState(null); // Error state
@@ -50,6 +50,7 @@ const PaymentTracker = () => {
     };
     const isUserAuthenticated = useMemo(() => (isClient ? isAuthenticated() : false), [isClient]);
     const userRole = useMemo(() => (isClient ? getUserRole() : null), [isClient]);
+    const userData = useMemo(() => (isClient ? getUserData() : null), [isClient]);
     const headingStyle = {
         fontFamily: "'Poppins', sans-serif", // Modern font
         fontWeight: '600', // Semi-bold font
@@ -92,6 +93,9 @@ const PaymentTracker = () => {
         { name: "Qabristan Amount", key: "qabristanAmount" },
         { name: "Masjid Program Amount", key: "masjidProgramAmount" },
         { name: "Payment Date", key: "paymentDate" },
+        // NEW COLUMN ADDED HERE
+        { name: "Paid To", key: "paidTo" },
+
         ...(isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && yearFilter !== "All Years" ? [{ name: "Action", key: "action" }] : []), // Only show Action if a specific year is selected
     ];
 
@@ -175,7 +179,8 @@ const PaymentTracker = () => {
                 masjidAmount: masjidAmount,
                 qabristanAmount: qabristanAmount,
                 masjidProgramAmount: masjidProgramAmount,
-                paymentDate: formattedDate
+                paymentDate: formattedDate,
+                createdBy: userData.userId,
             };
             try {
                 // Add new payment record
@@ -350,15 +355,15 @@ const PaymentTracker = () => {
     }
     return (
         <>
- 
+
             <Container className="my-5">
                 <h2 className="text-center mb-4" style={headingStyle}>
                     Masjid Income Details
                 </h2>
-                        {/* Back Button - Right aligned on mobile, Left on tablets/desktops */}
-                        <div className="d-flex justify-content-md-start justify-content-end mb-3">
-                          <BackButton />
-                        </div>
+                {/* Back Button - Right aligned on mobile, Left on tablets/desktops */}
+                <div className="d-flex justify-content-md-start justify-content-end mb-3">
+                    <BackButton />
+                </div>
 
                 {/* Filters */}
                 <Row className="mb-3 align-items-center">
@@ -601,23 +606,60 @@ const PaymentTracker = () => {
                                             ))
                                         }
                                     </td>
-                                    {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && yearFilter !== "All Years" && (
-                                        <td>
-                                            {member.masjidIncome
-                                                .filter(payment => payment.paymentDate.startsWith(yearFilter)) // Filter payments for the selected year
+                                    <td>
+                                        {yearFilter === "All Years"
+                                            ? member.masjidIncome.map((payment) => (
+                                                <div
+                                                    key={`paidto-${payment.id}`}
+                                                    className="highlight-cell"
+                                                    style={{
+                                                        backgroundColor: '#f8f9fa',
+                                                        padding: '5px',
+                                                        borderRadius: '5px',
+                                                    }}
+                                                >
+                                                    {payment.paidTo}
+                                                </div>
+                                            ))
+                                            : member.masjidIncome
+                                                .filter(payment => payment.paymentDate.startsWith(yearFilter))
                                                 .map((payment) => (
-                                                    <Button
-                                                        variant="primary"
-                                                        size="sm"
-                                                        key={`${payment.masjidAmount + 5}-${payment.masjidProgramAmount + 5}-${payment.id}`}  // Unique key
-                                                        onClick={() => handleEditModal(member, payment, payment.id)}  // Pass specific payment to the modal
-                                                        style={{ marginBottom: '5px', display: 'block' }}
+                                                    <div
+                                                        key={`paidto-${payment.id}`}
+                                                        className="highlight-cell"
+                                                        style={{
+                                                            backgroundColor: '#e7f3fe',
+                                                            padding: '5px',
+                                                            borderRadius: '5px',
+                                                        }}
                                                     >
-                                                        Edit
-                                                    </Button>
+                                                        {payment.paidTo}
+                                                    </div>
                                                 ))
-                                            }
+                                        }
+                                    </td>
+
+                                    {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && yearFilter !== "All Years" && (
+                                        <td style={{ verticalAlign: "top" }}>
+                                            <div className="action-column-wrapper">
+                                                {member.masjidIncome
+                                                    .filter(payment => payment.paymentDate.startsWith(yearFilter))
+                                                    .map((payment) => (
+                                                        <Button
+                                                            variant="primary"
+                                                            size="sm"
+                                                            key={`${payment.masjidAmount + 5}-${payment.masjidProgramAmount + 5}-${payment.id}`}
+                                                            onClick={() => handleEditModal(member, payment, payment.id)}
+                                                            className="action-edit-btn"
+                                                        >
+                                                            Edit
+                                                        </Button>
+
+                                                    ))
+                                                }
+                                            </div>
                                         </td>
+
                                     )}
                                 </tr>
 
