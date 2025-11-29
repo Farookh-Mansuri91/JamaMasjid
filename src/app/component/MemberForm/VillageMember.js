@@ -221,7 +221,7 @@ const VillageMember = () => {
                 <th>Father Name</th>
                 <th>Mohalla</th>
                 {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && <th>Mobile Number</th>}
-                {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && <th style={{ width: 120 }}>Actions</th>}
+                <th style={{ width: 120 }}>Actions</th>
               </tr>
             </thead>
 
@@ -235,7 +235,7 @@ const VillageMember = () => {
                   const idKey = member.id ?? `${member.firstName}-${member.lastName}-${idx}`;
                   const rowIndex = currentPage * perPage + idx + 1;
                   // Optional: assume API returns an array member.mohallaMembers for the mohalla's committee members.
-                  const mohallaMembers = member.mohallaMembers || member.membersOfMohalla || []; 
+                  const mohallaMembers = member.mohallaMembers || member.membersOfMohalla || [];
 
                   return (
                     <React.Fragment key={idKey}>
@@ -246,23 +246,42 @@ const VillageMember = () => {
                         <td>{member.fatherName}</td>
                         <td>{member.mohallaName}</td>
                         {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && <td>{member.mobileNumber || "-"}</td>}
-                        {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && (
-                          <td>
-                            <div className="d-flex gap-2 align-items-center">
-                              <Button variant="outline-primary" size="sm" onClick={() => handleModalOpen(member)}>
+                        <td>
+                          <div className="d-flex gap-2 align-items-center">
+
+                            {/* EDIT BUTTON → ONLY for Member/Admin */}
+                            {isUserAuthenticated && (userRole === "Member" || userRole === "Admin") && (
+                              <Button
+                                variant="outline-primary"
+                                size="sm"
+                                onClick={() => handleModalOpen(member)}
+                              >
                                 <FaEdit className="me-1" /> Edit
                               </Button>
-                              <Button
-                                variant="outline-secondary"
-                                size="sm"
-                                aria-expanded={expandedRow === idKey}
-                                onClick={() => toggleExpand(idKey)}
-                              >
-                                {expandedRow === idKey ? <><FaChevronUp /> Hide</> : <><FaChevronDown /> Show</>}
-                              </Button>
-                            </div>
-                          </td>
-                        )}
+                            )}
+
+                            {/* SHOW / HIDE BUTTON → VISIBLE FOR EVERYONE */}
+                            <Button
+                              variant="outline-secondary"
+                              size="sm"
+                              aria-expanded={expandedRow === idKey}
+                              onClick={() => toggleExpand(idKey)}
+                            >
+                              {expandedRow === idKey ? (
+                                <>
+                                  <FaChevronUp /> Hide
+                                </>
+                              ) : (
+                                <>
+                                  <FaChevronDown /> Show
+                                </>
+                              )}
+                            </Button>
+
+                          </div>
+                        </td>
+
+
                       </tr>
 
                       {/* Expandable row for mohalla members */}
