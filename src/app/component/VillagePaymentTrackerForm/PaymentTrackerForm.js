@@ -300,7 +300,7 @@ const PaymentTracker = () => {
         <>
             <Container className="my-5">
                 <h2 className="text-center mb-4" style={headingStyle}>
-                    Village Member Payment Tracker
+                    Village Donor Payment Tracker
                 </h2>
                 {/* Back Button - Right aligned on mobile, Left on tablets/desktops */}
                 <div className="d-flex justify-content-md-start justify-content-end mb-3">

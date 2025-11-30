@@ -172,7 +172,7 @@ const VillageMember = () => {
   return (
     <div className="card" style={{ position: "relative" }}>
       <div className="container my-4">
-        <h2 style={headingStyle}>Village Member</h2>
+        <h2 style={headingStyle}>Village Donor Details</h2>
         {/* Back Button - Right aligned on mobile, Left on tablets/desktops */}
         <div className="d-flex justify-content-md-start justify-content-end mb-3">
           <BackButton />
@@ -196,7 +196,7 @@ const VillageMember = () => {
           <div className="d-flex gap-2 justify-content-end">
             {(isUserAuthenticated && (userRole === "Member" || userRole === "Admin")) && (
               <Button variant="primary" className="d-flex align-items-center rounded-pill" onClick={() => handleModalOpen({})}>
-                <FaPlus className="me-2" /> Add New Member
+                <FaPlus className="me-2" /> Add New Donor
               </Button>
             )}
 
@@ -273,7 +273,7 @@ const VillageMember = () => {
                                 </>
                               ) : (
                                 <>
-                                  <FaChevronDown /> Show
+                                  <FaChevronDown /> Show Members
                                 </>
                               )}
                             </Button>
@@ -336,7 +336,7 @@ const VillageMember = () => {
 
       <Modal show={showModal} onHide={handleModalClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>{isEdit ? "Edit Member" : "Add New Member"}</Modal.Title>
+          <Modal.Title>{isEdit ? "Edit Donor Details" : "Add New Donor"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSaveMember}>
